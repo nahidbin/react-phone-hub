@@ -3,11 +3,14 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/home/Home";
 import Favorites from "../pages/Favorites/Favorites";
 import Login from "../pages/Login/Login";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Phone from "../pages/Phone/Phone";
 
 const myCreatedRoute = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -20,7 +23,12 @@ const myCreatedRoute = createBrowserRouter([
       },
       {
         path : "/login",
-        element : <Login></Login>
+        element : <Login></Login>,
+      },
+      {
+        path: "/phones/:id",
+        element : <Phone></Phone>,
+        loader : ()=> fetch('/phones.json')
       },
     ],
   },
